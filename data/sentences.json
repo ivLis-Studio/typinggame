@@ -1,0 +1,122 @@
+[
+  {
+    "text": "안녕하세요. 반갑습니다.",
+    "difficulty": "easy",
+    "language": "ko",
+    "category": "general"
+  },
+  {
+    "text": "오늘 날씨가 정말 좋네요.",
+    "difficulty": "easy",
+    "language": "ko",
+    "category": "general"
+  },
+  {
+    "text": "타자 연습을 하면 실력이 늘어납니다.",
+    "difficulty": "easy",
+    "language": "ko",
+    "category": "general"
+  },
+  {
+    "text": "컴퓨터 프로그래밍은 논리적 사고를 요구합니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "데이터베이스 최적화는 시스템 성능에 중요한 영향을 미칩니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "웹 개발에서 사용자 경험은 매우 중요한 요소입니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "인공지능과 머신러닝 기술이 빠르게 발전하고 있습니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "블록체인 기술은 탈중앙화된 시스템을 구현하는 데 활용됩니다.",
+    "difficulty": "hard",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "클라우드 컴퓨팅은 확장성과 유연성을 제공하는 혁신적인 기술입니다.",
+    "difficulty": "hard",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "마이크로서비스 아키텍처는 복잡한 애플리케이션을 작은 서비스로 분해합니다.",
+    "difficulty": "hard",
+    "language": "ko",
+    "category": "tech"
+  },
+  {
+    "text": "봄이 오면 꽃이 피고 새들이 노래합니다.",
+    "difficulty": "easy",
+    "language": "ko",
+    "category": "literature"
+  },
+  {
+    "text": "책을 읽는 것은 지식과 지혜를 얻는 좋은 방법입니다.",
+    "difficulty": "easy",
+    "language": "ko",
+    "category": "literature"
+  },
+  {
+    "text": "문학은 인간의 감정과 사상을 아름답게 표현하는 예술입니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "literature"
+  },
+  {
+    "text": "시는 함축적인 언어로 깊은 의미를 전달하는 문학 장르입니다.",
+    "difficulty": "medium",
+    "language": "ko",
+    "category": "literature"
+  },
+  {
+    "text": "소설은 허구적 이야기를 통해 인간의 삶을 탐구하는 문학 형식입니다.",
+    "difficulty": "hard",
+    "language": "ko",
+    "category": "literature"
+  },
+  {
+    "text": "간장 공장 공장장은 강 공장장이고, 된장 공장 공장장은 공 공장장이다.",
+    "difficulty": "hard",
+    "language": "ko",
+    "category": "tongue_twister"
+  },
+  {
+    "text": "Hello, how are you today?",
+    "difficulty": "easy",
+    "language": "en",
+    "category": "general"
+  },
+  {
+    "text": "Programming requires logical thinking and problem-solving skills.",
+    "difficulty": "medium",
+    "language": "en",
+    "category": "tech"
+  },
+  {
+    "text": "The quick brown fox jumps over the lazy dog.",
+    "difficulty": "medium",
+    "language": "en",
+    "category": "general"
+  },
+  {
+    "text": "Artificial intelligence and machine learning are transforming industries.",
+    "difficulty": "hard",
+    "language": "en",
+    "category": "tech"
+  }
+]

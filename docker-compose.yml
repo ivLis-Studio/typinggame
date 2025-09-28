@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # MongoDB 서비스
+  mongodb:
+    image: mongo:7.0
+    container_name: typinggame-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: typinggame
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - typinggame-network
+
+  # Redis 서비스
+  redis:
+    image: redis:7-alpine
+    container_name: typinggame-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass redis123
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - typinggame-network
+
+  # Node.js 애플리케이션 서비스
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: typinggame-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      MONGODB_URI: mongodb://admin:password123@mongodb:27017/typinggame?authSource=admin
+      REDIS_URL: redis://:redis123@redis:6379
+      JWT_SECRET: typing-game-docker-secret-2023
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./public:/app/public
+    networks:
+      - typinggame-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nginx 리버스 프록시 (선택사항)
+  nginx:
+    image: nginx:alpine
+    container_name: typinggame-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    networks:
+      - typinggame-network
+
+volumes:
+  mongodb_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  typinggame-network:
+    driver: bridge

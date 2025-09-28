@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대결! 타자연습</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 로딩 스피너 -->
+        <div id="loading" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>로딩 중...</p>
+        </div>
+
+        <!-- 네비게이션 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><i class="fas fa-keyboard"></i> 대결! 타자연습</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> 홈
+                    </a>
+                    <a href="#rooms" class="nav-link" data-page="rooms">
+                        <i class="fas fa-door-open"></i> 게임방
+                    </a>
+                    <a href="#leaderboard" class="nav-link" data-page="leaderboard">
+                        <i class="fas fa-trophy"></i> 순위표
+                    </a>
+                    <a href="#stats" class="nav-link" data-page="stats">
+                        <i class="fas fa-chart-bar"></i> 통계
+                    </a>
+                    <div class="nav-user">
+                        <div id="user-info" class="user-info" style="display: none;">
+                            <span class="user-nickname"></span>
+                            <span class="user-level"></span>
+                            <button id="logout-btn" class="btn btn-outline">로그아웃</button>
+                        </div>
+                        <div id="auth-buttons" class="auth-buttons">
+                            <button id="login-btn" class="btn btn-primary">로그인</button>
+                            <button id="guest-btn" class="btn btn-outline">게스트</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="main-content">
+            <!-- 홈 페이지 -->
+            <div id="home-page" class="page active">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2>실시간 대결로 타자 실력을 늘려보세요!</h2>
+                        <p>친구들과 함께 타자 속도와 정확도를 겨루며 재미있게 타자연습을 할 수 있습니다.</p>
+                        <div class="hero-buttons">
+                            <button id="quick-start-btn" class="btn btn-large btn-primary">
+                                <i class="fas fa-bolt"></i> 빠른 시작
+                            </button>
+                            <button id="create-room-btn" class="btn btn-large btn-outline">
+                                <i class="fas fa-plus"></i> 방 만들기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <div class="container">
+                        <h3>주요 기능</h3>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <i class="fas fa-users"></i>
+                                <h4>실시간 멀티플레이어</h4>
+                                <p>최대 8명까지 동시에 타자 대결</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>성과 분석</h4>
+                                <p>WPM, 정확도 등 상세한 통계 제공</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-trophy"></i>
+                                <h4>순위 시스템</h4>
+                                <p>전체/주간/월간 리더보드</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-level-up-alt"></i>
+                                <h4>레벨 시스템</h4>
+                                <p>게임을 통한 경험치 획득과 레벨업</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 게임방 페이지 -->
+            <div id="rooms-page" class="page">
+                <div class="page-header">
+                    <h2>게임방</h2>
+                    <div class="page-actions">
+                        <button id="refresh-rooms-btn" class="btn btn-outline">
+                            <i class="fas fa-sync-alt"></i> 새로고침
+                        </button>
+                        <button id="join-by-code-btn" class="btn btn-secondary">
+                            <i class="fas fa-key"></i> 코드로 참가
+                        </button>
+                        <button id="create-room-btn-2" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> 방 만들기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="rooms-filter">
+                    <select id="difficulty-filter">
+                        <option value="">모든 난이도</option>
+                        <option value="easy">쉬움</option>
+                        <option value="medium">보통</option>
+                        <option value="hard">어려움</option>
+                    </select>
+                    <select id="status-filter">
+                        <option value="">모든 상태</option>
+                        <option value="waiting">대기중</option>
+                        <option value="ready">준비완료</option>
+                    </select>
+                </div>
+
+                <div id="rooms-list" class="rooms-list">
+                    <!-- 게임방 목록이 동적으로 생성됩니다 -->
+                </div>
+
+                <div id="rooms-pagination" class="pagination">
+                    <!-- 페이지네이션이 동적으로 생성됩니다 -->
+                </div>
+            </div>
+
+            <!-- 순위표 페이지 -->
+            <div id="leaderboard-page" class="page">
+                <div class="page-header">
+                    <h2>순위표</h2>
+                </div>
+
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" data-period="all">전체</button>
+                    <button class="tab-btn" data-period="weekly">주간</button>
+                    <button class="tab-btn" data-period="monthly">월간</button>
+                </div>
+
+                <div class="leaderboard-filter">
+                    <select id="leaderboard-difficulty">
+                        <option value="">모든 난이도</option>
+                        <option value="easy">쉬움</option>
+                        <option value="medium">보통</option>
+                        <option value="hard">어려움</option>
+                    </select>
+                </div>
+
+                <div id="leaderboard-list" class="leaderboard-list">
+                    <!-- 순위표가 동적으로 생성됩니다 -->
+                </div>
+            </div>
+
+            <!-- 통계 페이지 -->
+            <div id="stats-page" class="page">
+                <div class="page-header">
+                    <h2>나의 통계</h2>
+                </div>
+
+                <div id="stats-content" class="stats-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>총 게임 수</h4>
+                            <span class="stat-value" id="total-games">0</span>
+                        </div>
+                        <div class="stat-card">
+                            <h4>승률</h4>
+                            <span class="stat-value" id="win-rate">0%</span>
+                        </div>
+                        <div class="stat-card">
+                            <h4>최고 WPM</h4>
+                            <span class="stat-value" id="best-wpm">0</span>
+                        </div>
+                        <div class="stat-card">
+                            <h4>평균 정확도</h4>
+                            <span class="stat-value" id="avg-accuracy">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>WPM 진행률</h3>
+                        <canvas id="wpm-chart"></canvas>
+                    </div>
+
+                    <div class="recent-games">
+                        <h3>최근 게임</h3>
+                        <div id="recent-games-list">
+                            <!-- 최근 게임 목록이 동적으로 생성됩니다 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="guest-stats-message" class="guest-message" style="display: none;">
+                    <p>통계를 보려면 로그인이 필요합니다.</p>
+                    <button id="login-for-stats" class="btn btn-primary">로그인</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- 모달 -->
+        <div id="modal-overlay" class="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 id="modal-title">모달 제목</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- 모달 내용이 동적으로 생성됩니다 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 토스트 알림 -->
+        <div id="toast-container" class="toast-container">
+            <!-- 토스트 메시지가 동적으로 생성됩니다 -->
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/game.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
