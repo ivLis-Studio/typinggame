@@ -11,7 +11,12 @@
     "test:coverage": "jest --coverage",
     "init-db": "node scripts/init-db.js",
     "lint": "eslint server/**/*.js",
-    "lint:fix": "eslint server/**/*.js --fix"
+    "lint:fix": "eslint server/**/*.js --fix",
+    "docker:build": "./docker.sh build",
+    "docker:start": "./docker.sh start",
+    "docker:stop": "./docker.sh stop",
+    "docker:logs": "./docker.sh logs",
+    "docker:clean": "./docker.sh clean"
   },
   "keywords": ["typing", "game", "realtime", "websocket"],
   "author": "Typing Game Team",

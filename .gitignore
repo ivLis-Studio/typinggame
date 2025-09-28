@@ -11,3 +11,8 @@ coverage/
 .cache
 dist/
 build/
+
+# Docker 관련
+backups/
+nginx/ssl/
+.env.docker

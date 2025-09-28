@@ -69,6 +69,16 @@ class Server {
         this.app.use('/api/sentences', sentenceRoutes);
         this.app.use('/api/leaderboard', leaderboardRoutes);
 
+        // 헬스체크 엔드포인트
+        this.app.get('/api/health', (req, res) => {
+            res.status(200).json({
+                status: 'healthy',
+                timestamp: new Date().toISOString(),
+                uptime: process.uptime(),
+                environment: process.env.NODE_ENV || 'development'
+            });
+        });
+
         // 기본 라우트
         this.app.get('/', (req, res) => {
             res.sendFile(__dirname + '/../public/index.html');

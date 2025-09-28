@@ -37,6 +37,23 @@
 
 ## 🚀 빠른 시작
 
+### 방법 1: Docker로 실행 (추천) 🐳
+
+Docker를 사용하면 별도의 설치 없이 빠르게 시작할 수 있습니다.
+
+```bash
+# Docker 이미지 빌드 및 실행
+./docker.sh build
+./docker.sh start
+
+# 브라우저에서 접속
+http://localhost
+```
+
+자세한 Docker 사용법은 [DOCKER.md](DOCKER.md)를 참조하세요.
+
+### 방법 2: 로컬 개발 환경
+
 ### 사전 요구사항
 - Node.js 18 이상
 - MongoDB 4.4 이상  
